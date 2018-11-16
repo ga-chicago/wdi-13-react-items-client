@@ -13,7 +13,14 @@ class LoginRegister extends Component {
     }
   }
   handleChange = (e) => {
-    
+    this.setState({
+      // this is called computed properties sytax
+      [e.currentTarget.name]: e.currentTarget.value
+    })
+  }
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(`You are trying to ${this.state.which}`);
   }
   toggle = () => {
     if(this.state.which==="login") {
