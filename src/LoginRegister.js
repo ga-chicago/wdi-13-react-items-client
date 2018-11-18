@@ -18,9 +18,25 @@ class LoginRegister extends Component {
       [e.currentTarget.name]: e.currentTarget.value
     })
   }
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     console.log(`You are trying to ${this.state.which}`);
+    const response = await fetch(`http://localhost:9292/api/user/${this.state.which}`, {
+      method: 'POST',
+      credentials: 'include',
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      }),
+      headers: { // this is how you set HTTP headers in fetch
+        'Content-Type': 'application/json'
+      }
+    })
+    const parsed = await response.json(); // See fetch API (MDN) for explanation of why this is necessary
+    console.log("here is auth response from handleSubmit in LoginRegister");
+    console.log(parsed);
+
+
   }
   toggle = () => {
     if(this.state.which==="login") {
