@@ -7,13 +7,22 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      username: ''
     }
   }
+
+  logIn = (username) => {
+    this.setState({
+      loggedIn: true,
+      username: username
+    })
+  }
+
   render() {
     return (
       <div>
-        { this.state.loggedIn ? <List /> : <LoginRegister /> }
+        { this.state.loggedIn ? <List /> : <LoginRegister logIn={this.logIn} /> }
       </div>
     );
   }

@@ -35,8 +35,9 @@ class LoginRegister extends Component {
     const parsed = await response.json(); // See fetch API (MDN) for explanation of why this is necessary
     console.log("here is auth response from handleSubmit in LoginRegister");
     console.log(parsed);
-
-
+    if(parsed.status === 200) {
+      this.props.logIn(parsed.logged_in_as)
+    }
   }
   toggle = () => {
     if(this.state.which==="login") {
