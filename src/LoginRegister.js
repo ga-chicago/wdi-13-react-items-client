@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './LoginRegister.css'
 
 
 class LoginRegister extends Component {

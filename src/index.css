@@ -12,3 +12,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.fake-link {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.fake-link-red {
+  color: red;
+  text-decoration: underline;
+  cursor: pointer;
+}

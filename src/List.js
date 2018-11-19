@@ -136,6 +136,35 @@ class List extends Component {
 
   }
 
+  delete = async (e) => {
+    const idToDelete = e.currentTarget.dataset.itemId;
+    console.log("you are trying to delete ", idToDelete);
+    const response = await fetch(`http://localhost:9292/api/items/${idToDelete}`, {
+      method: 'DELETE',
+      credentials: 'include'
+    })
+    const parsed = await response.json();
+    if(parseInt(parsed.status) === 200) {
+      // this.getItems();
+
+      // or you could physically remove it from the array
+      // and avoid making another request to your API
+
+      const state = this.state;
+
+      const index = state.items.findIndex((elem) => {
+        if(parseInt(elem.id)===parseInt(idToDelete)) {
+          return true
+        }
+        else return false
+      })
+
+      // const index = state.items.findIndex((elem) => parseInt(elem.id) === parseInt(idToDelete))
+      state.items.splice(index, 1)
+      this.setState(state);
+    }
+  }
+
   render(){
     const items = this.state.items.map((item, i) => {
       if (item.id.toString() === this.state.editingItemId.toString()) {
@@ -160,6 +189,13 @@ class List extends Component {
               onClick={this.edit}
             >
               (edit)
+            </span>
+            <span 
+              className="fake-link-red"
+              data-item-id={item.id}
+              onClick={this.delete}
+            >
+              (delete)
             </span>
           </li>
         )
