@@ -3,6 +3,8 @@ import './App.css';
 import List from './List';
 import LoginRegister from './LoginRegister'
 
+console.log(process.env);
+
 class App extends Component {
   constructor() {
     super()
