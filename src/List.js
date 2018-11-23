@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ItemEditor from './ItemEditor'
+import apiUrl from './apiUrl'
 
 class List extends Component {
   constructor() {
@@ -11,7 +12,7 @@ class List extends Component {
     }
   }
   async getItems() {
-    const response = await fetch('http://localhost:9292/api/items', {
+    const response = await fetch(`${apiUrl}/api/items`, {
       credentials: 'include'
     })
     const parsed = await response.json();
@@ -70,7 +71,7 @@ class List extends Component {
   async addItem() {
     // take what's in state
     // add it with fetch
-    const response = await fetch('http://localhost:9292/api/items', {
+    const response = await fetch(`${apiUrl}/api/items`, {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify({
@@ -108,7 +109,7 @@ class List extends Component {
   updateItem = async (id, text) => {
     console.log(`fetch call to change item ${id} to ${text}`);
     
-    const response = await fetch(`http://localhost:9292/api/items/${id}`, {
+    const response = await fetch(`${apiUrl}/api/items/${id}`, {
       method: 'PUT',
       credentials: 'include',
       body: JSON.stringify({
@@ -139,7 +140,7 @@ class List extends Component {
   delete = async (e) => {
     const idToDelete = e.currentTarget.dataset.itemId;
     console.log("you are trying to delete ", idToDelete);
-    const response = await fetch(`http://localhost:9292/api/items/${idToDelete}`, {
+    const response = await fetch(`${apiUrl}/api/items/${idToDelete}`, {
       method: 'DELETE',
       credentials: 'include'
     })
